@@ -1,9 +1,32 @@
-import React from 'react';
+'use client';
+
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { Sparkles, ShieldCheck, Clock, Phone, CheckCircle2, ArrowRight } from 'lucide-react';
+import Image from 'next/image';
+import { Sparkles, ShieldCheck, Clock, Phone, CheckCircle2, ArrowRight, Eye, X, Star } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 
 export default function MarketingLandingPage() {
+  const [selectedPoster, setSelectedPoster] = useState<{ title: string; src: string; desc: string } | null>(null);
+
+  const posters = [
+    {
+      title: 'Soft Cleaning (การทำความสะอาดทั่วไป)',
+      src: '/promotions/soft-cleaning.jpg',
+      desc: 'การดูแลความสะอาดทั่วไปเป็นประจำ เพื่อให้บ้านและพื้นที่ใช้งานน่าอยู่อาศัยเสมอ เหมาะสำหรับบ้านเดี่ยว คอนโด และสำนักงาน',
+    },
+    {
+      title: 'Deep Cleaning (ทำความสะอาดเชิงลึกมืออาชีพ)',
+      src: '/promotions/deep-cleaning.jpg',
+      desc: 'การทำความสะอาดครั้งใหญ่ เจาะลึกทุกจุด คราบฝุ่น เชื้อโรค แบคทีเรีย สารก่อภูมิแพ้ เหมาะสำหรับก่อนย้ายเข้า/หลังปรับปรุง',
+    },
+    {
+      title: 'Big Cleaning (การทำความสะอาดครั้งใหญ่)',
+      src: '/promotions/big-cleaning.jpg',
+      desc: 'ฟื้นฟูทุกพื้นที่ให้กลับมาสะอาดเหมือนใหม่ จัดการงานหนัก บ้านใหม่ หลังรีโนเวท หลังน้ำท่วม ด้วยอุปกรณ์มาตรฐานอุตสาหกรรม',
+    },
+  ];
+
   return (
     <div className="min-h-screen bg-pearl text-stone-900">
       {/* Hero Section */}
@@ -57,9 +80,11 @@ export default function MarketingLandingPage() {
             {/* Right Official Emblem Showcase */}
             <div className="lg:col-span-5 flex justify-center">
               <div className="relative p-6 rounded-3xl bg-white shadow-2xl border border-stone-200/80 max-w-sm w-full text-center">
-                <img
+                <Image
                   src="/logo.png"
                   alt="LUMINARY GLOBAL Official Logo"
+                  width={300}
+                  height={300}
                   className="w-full h-auto object-contain mx-auto drop-shadow-md"
                 />
                 <div className="mt-4 pt-4 border-t border-stone-100 text-xs text-stone-500">
@@ -68,6 +93,56 @@ export default function MarketingLandingPage() {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Promotional Infographics Gallery Section */}
+      <section className="py-16 bg-stone-900 text-white relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center max-w-3xl mx-auto mb-12">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-semibold mb-3">
+              <Star className="w-3.5 h-3.5" /> Infographics & Promotional Guide
+            </div>
+            <h2 className="font-serif text-3xl sm:text-4xl font-bold text-primary">
+              โปรโมชั่น & ขอบเขตบริการมาตรฐาน LUMINARY
+            </h2>
+            <p className="mt-3 text-stone-300 text-sm">
+              รายละเอียดแพ็กเกจการทำความสะอาด Soft Clean, Deep Clean และ Big Cleaning
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {posters.map((poster, index) => (
+              <div
+                key={index}
+                onClick={() => setSelectedPoster(poster)}
+                className="group cursor-pointer bg-stone-800/90 border border-stone-700/80 rounded-2xl overflow-hidden shadow-xl hover:border-primary transition-all duration-300 transform hover:-translate-y-1.5"
+              >
+                <div className="relative aspect-[3/4] overflow-hidden bg-stone-950">
+                  <img
+                    src={poster.src}
+                    alt={poster.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-stone-950 via-transparent to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
+                  <div className="absolute top-3 right-3 bg-black/70 backdrop-blur-md p-2 rounded-full text-white opacity-0 group-hover:opacity-100 transition-opacity">
+                    <Eye className="w-4 h-4 text-primary" />
+                  </div>
+                </div>
+
+                <div className="p-5 space-y-2">
+                  <h3 className="font-serif text-lg font-bold text-primary group-hover:text-amber-300 transition-colors">
+                    {poster.title}
+                  </h3>
+                  <p className="text-xs text-stone-300 line-clamp-2">{poster.desc}</p>
+                  <div className="pt-2 flex items-center text-xs font-semibold text-primary">
+                    <span>คลิกเพื่อดูรูปขยายใหญ่ (Infographic)</span>
+                    <ArrowRight className="w-3.5 h-3.5 ml-1 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -131,6 +206,33 @@ export default function MarketingLandingPage() {
           </div>
         </div>
       </section>
+
+      {/* Infographic Modal Popup */}
+      {selectedPoster && (
+        <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4">
+          <div className="relative max-w-4xl w-full max-h-[90vh] bg-stone-900 rounded-3xl border border-stone-700 overflow-hidden flex flex-col">
+            <div className="p-4 border-b border-stone-800 flex items-center justify-between">
+              <h3 className="font-serif text-base font-bold text-primary">{selectedPoster.title}</h3>
+              <button
+                onClick={() => setSelectedPoster(null)}
+                className="p-1.5 rounded-full hover:bg-stone-800 text-stone-300"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+            <div className="flex-1 overflow-y-auto p-4 flex justify-center bg-stone-950">
+              <img
+                src={selectedPoster.src}
+                alt={selectedPoster.title}
+                className="max-w-full h-auto object-contain rounded-xl shadow-2xl"
+              />
+            </div>
+            <div className="p-4 border-t border-stone-800 bg-stone-900 text-xs text-stone-400">
+              <p>{selectedPoster.desc}</p>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

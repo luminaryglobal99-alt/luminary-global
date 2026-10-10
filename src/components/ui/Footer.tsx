@@ -1,22 +1,21 @@
 import React from 'react';
 import Link from 'next/link';
-import { Phone, MapPin, Mail, ShieldCheck } from 'lucide-react';
+import { Phone, MapPin, ShieldCheck } from 'lucide-react';
 
 export const Footer: React.FC = () => {
   return (
     <footer className="bg-forest text-white pt-16 pb-12 border-t border-forest-light">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-white/10">
-          {/* Col 1: Brand Info */}
+          {/* Col 1: Official Brand Logo & Info */}
           <div className="space-y-4 md:col-span-1">
-            <div className="flex items-center space-x-3">
-              <div className="w-10 h-10 rounded-xl bg-primary text-forest-dark font-serif font-bold text-xl flex items-center justify-center">
-                L
-              </div>
-              <span className="font-serif font-bold text-lg text-primary tracking-wider">
-                LUMINARY GLOBAL
-              </span>
-            </div>
+            <Link href="/" className="inline-block">
+              <img
+                src="/logo.png"
+                alt="LUMINARY GLOBAL Logo"
+                className="h-16 w-auto object-contain bg-white/90 p-2 rounded-xl shadow-md"
+              />
+            </Link>
             <p className="text-xs text-stone-300 leading-relaxed">
               ผู้นำบริการทำความสะอาดระดับพรีเมียม มาตรฐานโรงแรม 5 ดาว สำหรับบ้านหรู คอนโดมิเนียม และพูลวิลล่า พร้อมระบบตรวจสอบภาพถ่ายดิจิทัล 100%
             </p>
@@ -67,7 +66,7 @@ export const Footer: React.FC = () => {
 
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-400 gap-4">
           <p>© 2026 LUMINARY GLOBAL. All rights reserved.</p>
-          <p className="flex items-center gap-1 text-primary">
+          <p className="flex items-center gap-1 text-primary font-medium">
             <ShieldCheck className="w-4 h-4" /> 5-Star Luxury Hospitality Standard
           </p>
         </div>

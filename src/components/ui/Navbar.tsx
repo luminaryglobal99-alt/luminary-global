@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Sparkles, Phone, Menu, X, ArrowRight } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 
 export const Navbar: React.FC = () => {
@@ -12,31 +12,25 @@ export const Navbar: React.FC = () => {
 
   const navLinks = [
     { name: 'หน้าแรก', href: '/' },
-    { name: 'บริการทั้งหมด', href: '/services' },
+    { name: 'บริการของเรา', href: '/services' },
     { name: 'แพ็กเกจราคา', href: '/pricing' },
     { name: 'ผลงาน Before/After', href: '/portfolio' },
     { name: 'ติดต่อเรา', href: '/contact' },
   ];
 
   return (
-    <nav className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-stone-200">
+    <nav className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-stone-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        {/* Brand Logo */}
-        <Link href="/" className="flex items-center space-x-3">
-          <div className="w-10 h-10 rounded-xl bg-forest flex items-center justify-center text-primary font-serif font-bold text-xl border border-primary/30 shadow-sm">
-            L
-          </div>
-          <div>
-            <span className="font-serif font-bold text-xl tracking-wider text-forest block leading-none">
-              LUMINARY GLOBAL
-            </span>
-            <span className="text-[10px] tracking-widest text-primary-dark font-semibold uppercase">
-              Luxury Cleaning Service
-            </span>
-          </div>
+        {/* Official Brand Logo */}
+        <Link href="/" className="flex items-center space-x-3 group">
+          <img
+            src="/logo.png"
+            alt="LUMINARY GLOBAL Logo"
+            className="h-12 w-auto object-contain transition-transform group-hover:scale-105"
+          />
         </Link>
 
-        {/* Desktop Links */}
+        {/* Desktop Navigation Links */}
         <div className="hidden md:flex items-center space-x-8 text-sm font-medium">
           {navLinks.map((link) => (
             <Link
@@ -51,15 +45,15 @@ export const Navbar: React.FC = () => {
           ))}
         </div>
 
-        {/* Portal Access & CTA */}
+        {/* Portals & CTA */}
         <div className="hidden lg:flex items-center space-x-4">
-          <div className="flex items-center space-x-2 text-xs text-stone-500 border-r border-stone-200 pr-4">
-            <Link href="/cleaner/dashboard" className="hover:text-primary">แม่บ้าน (PWA)</Link>
+          <div className="flex items-center space-x-2 text-xs text-stone-500 border-r border-stone-200 pr-4 font-medium">
+            <Link href="/cleaner/dashboard" className="hover:text-primary transition-colors">แม่บ้าน (PWA)</Link>
             <span>•</span>
-            <Link href="/admin/jobs" className="hover:text-primary">Admin</Link>
+            <Link href="/admin/jobs" className="hover:text-primary transition-colors">Admin</Link>
           </div>
           <a href="https://line.me/R/ti/p/@muuhouse465" target="_blank" rel="noopener noreferrer">
-            <Button variant="primary" size="sm">
+            <Button variant="primary" size="sm" className="shadow-md">
               ประเมินหน้างานฟรี
             </Button>
           </a>

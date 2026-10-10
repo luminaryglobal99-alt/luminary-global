@@ -1,91 +1,71 @@
 import React from 'react';
 import Link from 'next/link';
-import { Sparkles, ShieldCheck, Clock, Award, Phone, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Sparkles, ShieldCheck, Clock, Phone, CheckCircle2, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 
 export default function MarketingLandingPage() {
   return (
     <div className="min-h-screen bg-pearl text-stone-900">
-      {/* Navigation */}
-      <nav className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-stone-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-lg bg-forest flex items-center justify-center text-primary font-serif font-bold text-xl border border-primary/30">
-              L
-            </div>
-            <div>
-              <span className="font-serif font-bold text-xl tracking-wider text-forest block leading-none">
-                LUMINARY GLOBAL
-              </span>
-              <span className="text-[10px] tracking-widest text-primary font-semibold uppercase">
-                Luxury & Professional Cleaning
-              </span>
-            </div>
-          </div>
-
-          <div className="hidden md:flex items-center space-x-8 text-sm font-medium">
-            <Link href="/services" className="hover:text-primary transition-colors">บริการของเรา</Link>
-            <Link href="/pricing" className="hover:text-primary transition-colors">แพ็กเกจราคา</Link>
-            <Link href="/admin/jobs" className="hover:text-primary transition-colors text-stone-500">Admin</Link>
-            <Link href="/cleaner/dashboard" className="hover:text-primary transition-colors text-stone-500">Cleaner PWA</Link>
-          </div>
-
-          <div className="flex items-center space-x-3">
-            <a
-              href="https://line.me/R/ti/p/@muuhouse465"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button variant="primary" size="md">
-                ประเมินหน้างานฟรี
-              </Button>
-            </a>
-          </div>
-        </div>
-      </nav>
-
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-16 pb-24 bg-gradient-to-b from-stone-100 to-pearl">
+      <section className="relative overflow-hidden pt-12 pb-24 bg-gradient-to-b from-stone-100 via-pearl to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/30 text-primary-dark text-xs font-semibold mb-6">
-              <Sparkles className="w-4 h-4 text-primary" />
-              <span>มาตรฐานความสะอาดระดับโรงแรม 5 ดาว</span>
-            </div>
-            <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-forest leading-tight tracking-tight">
-              ยกระดับพื้นที่ของคุณ สู่ความสะอาดสมบูรณ์แบบ
-            </h1>
-            <p className="mt-6 text-lg text-stone-600 leading-relaxed">
-              บริการทำความสะอาดระดับพรีเมียม Soft Clean, Deep Clean และโปรแกรมพิเศษหลังรีโนเวท 
-              ด้วยทีมงานมืออาชีพ ระบบตรวจสอบ Checklist โปร่งใส และน้ำยาเฉพาะทาง 7 ชนิด ถนอมทุกพื้นผิว
-            </p>
-
-            <div className="mt-8 flex flex-wrap items-center gap-4">
-              <a href="https://line.me/R/ti/p/@muuhouse465" target="_blank" rel="noopener noreferrer">
-                <Button variant="secondary" size="lg" className="shadow-xl">
-                  แอดไลน์จองคิวงาน <ArrowRight className="w-5 h-5 ml-2 text-primary" />
-                </Button>
-              </a>
-              <a href="tel:0842479263">
-                <Button variant="outline" size="lg">
-                  <Phone className="w-4 h-4 mr-2" /> โทร 084-2479263
-                </Button>
-              </a>
-            </div>
-
-            {/* Trust Badges */}
-            <div className="mt-12 grid grid-cols-3 gap-6 pt-8 border-t border-stone-200/80">
-              <div>
-                <p className="text-2xl font-serif font-bold text-primary">7 ชนิด</p>
-                <p className="text-xs text-stone-500 mt-0.5">น้ำยาเฉพาะทางถนอมพื้นผิว</p>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            {/* Left Content */}
+            <div className="lg:col-span-7">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/30 text-primary-dark text-xs font-semibold mb-6 shadow-sm">
+                <Sparkles className="w-4 h-4 text-primary" />
+                <span>มาตรฐานความสะอาดระดับโรงแรม 5 ดาว</span>
               </div>
-              <div>
-                <p className="text-2xl font-serif font-bold text-forest">100%</p>
-                <p className="text-xs text-stone-500 mt-0.5">ภาพถ่าย Before/After GPS</p>
+              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-forest leading-tight tracking-tight">
+                ยกระดับพื้นที่ของคุณ สู่ความสะอาดสมบูรณ์แบบ
+              </h1>
+              <p className="mt-6 text-base sm:text-lg text-stone-600 leading-relaxed">
+                บริการทำความสะอาดระดับพรีเมียม Soft Clean, Deep Clean และโปรแกรมพิเศษหลังรีโนเวท 
+                ด้วยทีมงานมืออาชีพ ระบบตรวจสอบ Checklist โปร่งใส และน้ำยาเฉพาะทาง 7 ชนิด ถนอมทุกพื้นผิว
+              </p>
+
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <a href="https://line.me/R/ti/p/@muuhouse465" target="_blank" rel="noopener noreferrer">
+                  <Button variant="primary" size="lg" className="shadow-xl">
+                    แอดไลน์จองคิวงาน <ArrowRight className="w-5 h-5 ml-2" />
+                  </Button>
+                </a>
+                <a href="tel:0842479263">
+                  <Button variant="outline" size="lg">
+                    <Phone className="w-4 h-4 mr-2" /> โทร 084-2479263
+                  </Button>
+                </a>
               </div>
-              <div>
-                <p className="text-2xl font-serif font-bold text-primary">5-Star</p>
-                <p className="text-xs text-stone-500 mt-0.5">มาตรฐานโรงแรม & พูลวิลล่า</p>
+
+              {/* Trust Badges */}
+              <div className="mt-12 grid grid-cols-3 gap-6 pt-8 border-t border-stone-200/80">
+                <div>
+                  <p className="text-2xl font-serif font-bold text-primary">7 ชนิด</p>
+                  <p className="text-xs text-stone-500 mt-0.5">น้ำยาเฉพาะทางถนอมพื้นผิว</p>
+                </div>
+                <div>
+                  <p className="text-2xl font-serif font-bold text-forest">100%</p>
+                  <p className="text-xs text-stone-500 mt-0.5">ภาพถ่าย Before/After GPS</p>
+                </div>
+                <div>
+                  <p className="text-2xl font-serif font-bold text-primary">5-Star</p>
+                  <p className="text-xs text-stone-500 mt-0.5">มาตรฐานโรงแรม & พูลวิลล่า</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Official Emblem Showcase */}
+            <div className="lg:col-span-5 flex justify-center">
+              <div className="relative p-6 rounded-3xl bg-white shadow-2xl border border-stone-200/80 max-w-sm w-full text-center">
+                <img
+                  src="/logo.png"
+                  alt="LUMINARY GLOBAL Official Logo"
+                  className="w-full h-auto object-contain mx-auto drop-shadow-md"
+                />
+                <div className="mt-4 pt-4 border-t border-stone-100 text-xs text-stone-500">
+                  <p className="font-bold text-forest">LUMINARY GLOBAL BRANDING</p>
+                  <p className="text-[11px] mt-0.5">บริการทำความสะอาดครบวงจร ระดับองค์กร</p>
+                </div>
               </div>
             </div>
           </div>
@@ -151,21 +131,6 @@ export default function MarketingLandingPage() {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-forest text-white py-12 border-t border-forest-light">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div>
-            <span className="font-serif font-bold text-lg text-primary tracking-wider">LUMINARY GLOBAL</span>
-            <p className="text-xs text-stone-400 mt-1">บริการทำความสะอาดระดับพรีเมียม โทร. 084-2479263 | Line: @muuhouse465</p>
-          </div>
-          <div className="flex items-center gap-6 text-xs text-stone-400">
-            <Link href="/services" className="hover:text-primary">บริการ</Link>
-            <Link href="/pricing" className="hover:text-primary">ราคา</Link>
-            <Link href="/admin/jobs" className="hover:text-primary">พอร์ทัลแอดมิน</Link>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }

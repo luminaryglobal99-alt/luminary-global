@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useParams } from 'next/navigation';
-import { ShieldCheck, CheckCircle2, AlertCircle, Sparkles, ThumbsUp, MessageSquare, Phone, MapPin, Clock } from 'lucide-react';
+import { ShieldCheck, CheckCircle2, AlertCircle, ThumbsUp, MapPin, Clock } from 'lucide-react';
 import { ChecklistItem } from '@/lib/types';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
@@ -56,7 +56,7 @@ export default function CustomerReportPage() {
       job_id: jobId,
       zone_name: 'ระเบียงภายนอก (Balcony)',
       task_name: 'ขัดตะไคร่น้ำและเช็ดกระจกกันตก',
-      is_in_package: false, // อยู่นอกแพ็กเกจ
+      is_in_package: false,
       is_completed: false,
       requires_photo: false,
     },
@@ -74,15 +74,17 @@ export default function CustomerReportPage() {
   return (
     <div className="min-h-screen bg-stone-100 text-stone-900 pb-20">
       {/* Top Brand Banner */}
-      <header className="bg-forest text-white py-6 px-4 shadow-md">
+      <header className="bg-forest text-white py-4 px-4 shadow-md">
         <div className="max-w-3xl mx-auto flex flex-wrap items-center justify-between gap-4">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 rounded-lg bg-primary/20 border border-primary flex items-center justify-center text-primary font-serif font-bold text-xl">
-              L
-            </div>
+            <img
+              src="/logo.png"
+              alt="LUMINARY GLOBAL Logo"
+              className="h-10 w-auto object-contain bg-white/90 p-1 rounded-lg shadow-sm"
+            />
             <div>
-              <span className="font-serif font-bold text-lg tracking-wider text-white">LUMINARY GLOBAL</span>
-              <p className="text-xs text-primary">รายงานผลการตรวจรับงาน (Cleaning Quality Passport)</p>
+              <span className="font-serif font-bold text-base tracking-wider text-white block leading-none">LUMINARY GLOBAL</span>
+              <span className="text-[10px] text-primary">รายงานผลการตรวจรับงาน (Cleaning Quality Passport)</span>
             </div>
           </div>
           <Badge variant={reportStatus === 'APPROVED' ? 'green' : reportStatus === 'DISPUTED' ? 'red' : 'gold'}>
@@ -153,7 +155,7 @@ export default function CustomerReportPage() {
           ))}
         </div>
 
-        {/* Approval / Dispute Action Bar */}
+        {/* Action Bar */}
         {reportStatus === 'PENDING' && (
           <div className="bg-white p-6 rounded-2xl border border-stone-200 shadow-md space-y-4 text-center">
             <h3 className="font-serif text-lg font-bold text-forest">การตรวจรับงานและประเมินผล</h3>

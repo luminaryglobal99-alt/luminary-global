@@ -58,7 +58,7 @@ export const Footer: React.FC = () => {
               </p>
               <p className="flex items-center gap-2">
                 <MapPin className="w-4 h-4 text-primary shrink-0" />
-                <span>พื้นที่ให้บริการ: ภูเก็ตและพื้นที่ใกล้เคียง</span>
+                <span>พื้นที่ให้บริการ: สมุทรปราการ</span>
               </p>
             </div>
           </div>

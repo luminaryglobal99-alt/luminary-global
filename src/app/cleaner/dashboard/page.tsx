@@ -12,7 +12,7 @@ export default function CleanerDashboard() {
       id: 'JOB-2026-001',
       customer_name: 'คุณวิภาดา (Villa Botanica)',
       phone: '081-992-XXXX',
-      address: 'วิลล่า 12/4 ซอยป่าสัก 8 ภูเก็ต',
+      address: 'วิลล่า 12/4 ซอยตัวอย่าง 8 สมุทรปราการ',
       service_type: 'Deep Cleaning (บ้านเดี่ยว 2 ชั้น)',
       time: '09:00 - 14:00 น.',
       status: 'IN_PROGRESS' as const,

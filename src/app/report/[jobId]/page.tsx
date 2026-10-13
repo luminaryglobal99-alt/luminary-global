@@ -104,7 +104,7 @@ export default function CustomerReportPage() {
             </div>
             <div className="text-right text-xs text-stone-500">
               <p className="flex items-center gap-1"><Clock className="w-3.5 h-3.5 text-primary" /> 9 ต.ค. 2026</p>
-              <p className="flex items-center gap-1 mt-0.5"><MapPin className="w-3.5 h-3.5 text-primary" /> ภูเก็ต</p>
+              <p className="flex items-center gap-1 mt-0.5"><MapPin className="w-3.5 h-3.5 text-primary" /> สมุทรปราการ</p>
             </div>
           </div>
 

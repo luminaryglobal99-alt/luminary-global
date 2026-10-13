@@ -1,82 +1,85 @@
-'use client';
-
-import React, { useState } from 'react';
-import { Check, ArrowRight, Sparkles, Eye, X, Star } from 'lucide-react';
+import React from 'react';
+import { ArrowRight, Droplets, Phone, Sparkles, Check } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 
+// ซ่อนโปสเตอร์ราคาเดิม (7659_0 / deep / big · ราคา ตร.ว.) 13 ต.ค. ตามพี่ไอโกะยืนยันหน่วย ตร.ม.
+// ไฟล์รูปยังอยู่ใน public/promotions/ ห้ามลบ
+
+const PHONE_DISPLAY = '084-2479263';
+const PHONE_HREF = 'tel:0842479263';
+const LINE_URL = 'https://line.me/R/ti/p/@muuhouse465';
+
+// ราคายืนยันจากพี่ไอโกะ (COO Luminary) + พี่หยัด 2026-10-13 · หน่วย บาท/ตร.ม.
+const services = [
+  { name: 'Soft Cleaning', price: 50, note: 'ทำความสะอาดแบบเบา ๆ และสม่ำเสมอ' },
+  { name: 'Deep Cleaning', price: 70, note: 'ทำความสะอาดลึกทุกซอกทุกมุม' },
+  { name: 'Big Cleaning', price: 80, note: 'ขั้นต่ำ 50 ตร.ม.' },
+  { name: 'หลังรีโนเวท (Post-Renovation)', price: 70, note: 'กำจัดฝุ่นผงก่อสร้าง ละอองสี และคราบกาว' },
+];
+
+// ตารางแพ็กเกจเหมาน้ำท่วม จากพี่ไอโกะ (LINE ~14:40) · พี่หยัด "ตามนั้น" 14:45 · ขนาดบ้านเป็น ตร.ว. ตามต้นฉบับ
+const floodPackages = [
+  { size: 'Size S', area: 'ไม่เกิน 30 ตร.ว.', price: '7,900 บาท' },
+  { size: 'Size M', area: '31–50 ตร.ว.', price: '9,900 บาท' },
+  { size: 'Size L', area: '51–70 ตร.ว.', price: '11,900 บาท' },
+  { size: 'Size XL', area: '71–100 ตร.ว.', price: '14,900 บาท' },
+  { size: 'Size XXL', area: '101–150 ตร.ว.', price: '18,900 บาท' },
+  { size: 'Size VIP', area: 'มากกว่า 150 ตร.ว.', price: 'ประเมินราคาหน้างาน' },
+];
+
+const floodIncluded = [
+  'ทำความสะอาดภายในบ้านชั้น 1',
+  'ขัดพื้นภายนอกบ้านด้วยเครื่องขัดตามความเหมาะสม',
+  'ขจัดคราบโคลนและสิ่งสกปรก',
+  'เก็บและจัดเรียงสิ่งของ',
+  'คัดแยกและทิ้งขยะตามเงื่อนไข',
+  'เช็ดกระจก ขอบบัว มุม และซอกต่าง ๆ',
+  'ทำความสะอาดจุดที่พบเชื้อรา',
+  'บริการอบโอโซนตามความเหมาะสม',
+];
+
 export default function PricingPage() {
-  const [selectedPoster, setSelectedPoster] = useState<{ title: string; src: string } | null>(null);
-
-  const softCleanTiers = [
-    { size: 'บ้านขนาดเล็ก', area: '50 - 100 ตร.ว.', regular: 3000, promo: 2500, detail: 'ทำความสะอาดทั่วบ้าน, ห้องนอน, ห้องน้ำ, ห้องครัว, เช็ดฝุ่น เฟอร์นิเจอร์' },
-    { size: 'บ้านขนาดกลาง', area: '101 - 200 ตร.ว.', regular: 5500, promo: 4500, detail: 'ทำความสะอาดทั่วบ้าน, ห้องนอน, ห้องน้ำ, ห้องครัว, เช็ดฝุ่น เฟอร์นิเจอร์' },
-    { size: 'บ้านขนาดใหญ่', area: '201 - 300 ตร.ว.', regular: 9000, promo: 7500, detail: 'ทำความสะอาดทั่วบ้าน, ห้องนอน, ห้องน้ำ, ห้องครัว, เช็ดฝุ่น เฟอร์นิเจอร์' },
-    { size: 'บ้านขนาดพิเศษ', area: 'มากกว่า 300 ตร.ว.', regular: 0, promo: 0, custom: 'เริ่มต้น 50 บาท/ตร.ว.', detail: 'บริการปรับตามความต้องการ, ทีมงานมืออาชีพ, อุปกรณ์ครบมาตรฐาน' },
-  ];
-
-  const officialPosters = [
-    { title: 'โปรโมชั่นบริการทำความสะอาดบ้าน Soft Cleaning', src: '/promotions/soft-cleaning-pricing.jpg' },
-    { title: 'รายละเอียดแพ็กเกจ Deep Cleaning เชิงลึก', src: '/promotions/deep-cleaning-pricing.jpg' },
-    { title: 'รายละเอียดบริการ Big Cleaning ครั้งใหญ่', src: '/promotions/big-cleaning-pricing.jpg' },
-  ];
-
   return (
     <div className="min-h-screen bg-pearl text-stone-900">
       {/* Header */}
       <div className="bg-forest text-white py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="text-primary text-xs font-semibold uppercase tracking-widest">Official Pricing Catalog</span>
-          <h1 className="font-serif text-3xl sm:text-4xl font-bold mt-2">อัตราค่าบริการและโปรโมชั่นพิเศษ</h1>
+          <h1 className="font-serif text-3xl sm:text-4xl font-bold mt-2">อัตราค่าบริการ</h1>
           <p className="mt-3 text-stone-300 text-sm max-w-xl mx-auto">
-            ราคาโปรโมชั่นทางการ บริการทำความสะอาดบ้าน พูลวิลล่า และสำนักงาน พร้อมเซ็ทน้ำยาเฉพาะทาง 7 ชนิด
+            ราคาต่อพื้นที่ใช้สอย (บาท/ตร.ม.) สำหรับบริการทำความสะอาดบ้าน พูลวิลล่า คอนโด และสำนักงาน
           </p>
         </div>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
-        {/* Soft Cleaning Promo Card Section */}
+        {/* บริการราคาต่อ ตร.ม. */}
         <div>
-          <div className="flex items-center justify-between mb-8">
-            <div>
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary-dark text-xs font-bold mb-2">
-                <Sparkles className="w-3.5 h-3.5 text-primary" /> โปรโมชั่นบริการทำความสะอาดบ้าน (Soft Cleaning)
-              </div>
-              <h2 className="font-serif text-2xl sm:text-3xl font-bold text-forest">สะอาดครบ จบในครั้งเดียว (เริ่มต้น 50 บาท/ตร.ว.)</h2>
+          <div className="mb-8">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary-dark text-xs font-bold mb-2">
+              <Sparkles className="w-3.5 h-3.5 text-primary" /> ราคาบริการทำความสะอาด
             </div>
+            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-forest">สะอาดครบ จบในครั้งเดียว</h2>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {softCleanTiers.map((tier, idx) => (
+            {services.map((s) => (
               <div
-                key={idx}
+                key={s.name}
                 className="bg-white rounded-3xl p-6 border border-stone-200/90 shadow-sm hover:border-primary/60 transition-all flex flex-col justify-between"
               >
                 <div className="space-y-3">
-                  <div className="bg-stone-50 p-3 rounded-2xl border border-stone-100">
-                    <p className="font-serif font-bold text-stone-900 text-base">{tier.size}</p>
-                    <p className="text-xs text-primary-dark font-semibold mt-0.5">{tier.area}</p>
+                  <p className="font-serif font-bold text-stone-900 text-base">{s.name}</p>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-3xl font-serif font-bold text-forest">฿{s.price}</span>
+                    <span className="text-xs text-stone-500">บาท/ตร.ม.</span>
                   </div>
-
-                  <div className="pt-2">
-                    {tier.custom ? (
-                      <p className="text-xl font-serif font-bold text-forest">{tier.custom}</p>
-                    ) : (
-                      <div className="flex items-baseline gap-2">
-                        <span className="text-2xl font-serif font-bold text-forest">฿{tier.promo.toLocaleString()}.-</span>
-                        <span className="text-xs text-stone-400 line-through">ปกติ {tier.regular.toLocaleString()}.-</span>
-                      </div>
-                    )}
-                  </div>
-
-                  <p className="text-xs text-stone-600 leading-relaxed border-t border-stone-100 pt-3">
-                    {tier.detail}
-                  </p>
+                  <p className="text-xs text-stone-600 leading-relaxed border-t border-stone-100 pt-3">{s.note}</p>
                 </div>
-
                 <div className="pt-6">
-                  <a href="https://line.me/R/ti/p/@muuhouse465" target="_blank" rel="noopener noreferrer" className="block w-full">
+                  <a href={LINE_URL} target="_blank" rel="noopener noreferrer" className="block w-full">
                     <Button variant="primary" size="sm" className="w-full">
-                      จองแพ็กเกจนี้ <ArrowRight className="w-3.5 h-3.5 ml-1" />
+                      สอบถามบริการนี้ <ArrowRight className="w-3.5 h-3.5 ml-1" />
                     </Button>
                   </a>
                 </div>
@@ -85,69 +88,51 @@ export default function PricingPage() {
           </div>
         </div>
 
-        {/* Official Poster Infographic Showcase */}
-        <div className="bg-stone-900 text-white rounded-3xl p-8 shadow-2xl border border-stone-800 space-y-8">
-          <div className="text-center max-w-2xl mx-auto space-y-2">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-semibold">
-              <Star className="w-3.5 h-3.5" /> Official Infographic Catalog
+        {/* ทำความสะอาดหลังน้ำท่วม · แพ็กเกจเหมา */}
+        <div id="flood" className="bg-white rounded-3xl border border-stone-200 shadow-sm p-6 sm:p-8 space-y-8">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary-dark text-xs font-bold mb-2">
+              <Droplets className="w-3.5 h-3.5 text-primary" /> บริการใหม่
             </div>
-            <h3 className="font-serif text-2xl font-bold text-primary">ใบประกาศและโปสเตอร์ราคาอย่างเป็นทางการ</h3>
-            <p className="text-xs text-stone-300">คลิกที่รูปภาพเพื่อเปิดดูใบราคาและขอบเขตงานฉบับเต็มความละเอียดสูง</p>
+            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-forest">ทำความสะอาดหลังน้ำท่วม</h2>
+            <p className="text-sm text-stone-600 mt-2">ราคาเป็นแพ็กเกจแบบเหมาคอร์ส · สอบถามเพิ่มเติม {PHONE_DISPLAY}</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {officialPosters.map((poster, index) => (
-              <div
-                key={index}
-                onClick={() => setSelectedPoster(poster)}
-                className="group cursor-pointer bg-stone-800 rounded-2xl overflow-hidden border border-stone-700 hover:border-primary transition-all shadow-lg"
-              >
-                <div className="relative aspect-[3/4] overflow-hidden bg-black">
-                  <img
-                    src={poster.src}
-                    alt={poster.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors flex items-center justify-center">
-                    <div className="bg-black/70 backdrop-blur-sm p-3 rounded-full text-white">
-                      <Eye className="w-5 h-5 text-primary" />
-                    </div>
-                  </div>
-                </div>
-                <div className="p-4 text-center">
-                  <p className="text-xs font-bold text-stone-200 group-hover:text-primary transition-colors">
-                    {poster.title}
-                  </p>
-                </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {floodPackages.map((p) => (
+              <div key={p.size} className="rounded-2xl border border-stone-200 bg-stone-50/60 p-5">
+                <p className="font-serif font-bold text-forest text-lg">{p.size}</p>
+                <p className="text-xs text-primary-dark font-semibold mt-0.5">ขนาดบ้าน {p.area}</p>
+                <p className="mt-3 font-serif text-xl font-bold text-stone-900">{p.price}</p>
               </div>
             ))}
           </div>
-        </div>
-      </div>
 
-      {/* Infographic Modal Popup */}
-      {selectedPoster && (
-        <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="relative max-w-4xl w-full max-h-[90vh] bg-stone-900 rounded-3xl border border-stone-700 overflow-hidden flex flex-col">
-            <div className="p-4 border-b border-stone-800 flex items-center justify-between">
-              <h3 className="font-serif text-base font-bold text-primary">{selectedPoster.title}</h3>
-              <button
-                onClick={() => setSelectedPoster(null)}
-                className="p-1.5 rounded-full hover:bg-stone-800 text-stone-300"
-              >
-                <X className="w-6 h-6" />
-              </button>
-            </div>
-            <div className="flex-1 overflow-y-auto p-4 flex justify-center bg-stone-950">
-              <img
-                src={selectedPoster.src}
-                alt={selectedPoster.title}
-                className="max-w-full h-auto object-contain rounded-xl shadow-2xl"
-              />
-            </div>
+          <div>
+            <h3 className="font-serif text-lg font-bold text-forest">ทุกแพ็กเกจรวม</h3>
+            <ul className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-stone-700">
+              {floodIncluded.map((i) => (
+                <li key={i} className="flex items-start gap-2">
+                  <Check className="w-4 h-4 text-primary shrink-0 mt-0.5" /> {i}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="flex flex-wrap gap-3">
+            <a href={PHONE_HREF}>
+              <Button variant="primary" size="md">
+                <Phone className="w-4 h-4 mr-2" /> โทร {PHONE_DISPLAY}
+              </Button>
+            </a>
+            <a href={LINE_URL} target="_blank" rel="noopener noreferrer">
+              <Button variant="primary" size="md">
+                สอบถามทาง LINE <ArrowRight className="w-4 h-4 ml-2" />
+              </Button>
+            </a>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 }

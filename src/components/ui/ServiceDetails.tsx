@@ -2,7 +2,7 @@ import React from 'react';
 import { Check, X, ShieldCheck } from 'lucide-react';
 
 // เนื้อหาจากสไลด์ Canva "cleaning service program" (พี่หยัดส่ง 2026-10-13)
-// ไม่ใส่ราคา: ราคาบนเว็บใช้โปสเตอร์ทางการเดิมในหน้า /pricing (หน่วย ตร.ว.) · Canva เขียน ตร.ม. → รอพี่หยัดตัดสิน
+// ราคาอยู่ที่หน้า /pricing (บาท/ตร.ม. ยืนยันโดยพี่ไอโกะ 2026-10-13) · ไฟล์นี้ไม่ใส่ตัวเลขราคา
 type Service = {
   name: string;
   tagline: string;

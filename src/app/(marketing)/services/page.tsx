@@ -2,6 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { ShieldCheck, Check, Sparkles, Droplets, Layers, Home, Building2, HardHat, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
+import { ServiceDetails } from '@/components/ui/ServiceDetails';
 
 export default function ServicesPage() {
   const cleaningAgents = [
@@ -83,6 +84,9 @@ export default function ServicesPage() {
           </div>
         </div>
 
+        <ServiceDetails />
+
+        <div className="mt-16" />
         {/* 7 Cleaning Agents Section */}
         <div className="bg-white rounded-3xl p-8 sm:p-12 border border-stone-200 shadow-sm">
           <div className="max-w-2xl mb-8">

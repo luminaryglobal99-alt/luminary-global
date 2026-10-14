@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/Button';
 export default function PortfolioPage() {
   const galleries = [
     {
-      title: 'งาน Deep Cleaning พูลวิลล่าหรู ภูเก็ต',
+      title: 'งาน Deep Cleaning พูลวิลล่าหรู',
       type: 'Luxury Pool Villa',
       before: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80',
       after: 'https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?auto=format&fit=crop&w=800&q=80',

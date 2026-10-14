@@ -62,7 +62,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <p className="text-xs text-stone-400">พื้นที่ให้บริการ</p>
-                  <p className="text-sm font-bold text-stone-800">ภูเก็ต (เมือง, กะทู้, ถลาง, ฉลอง, ป่าตอง, เชิงทะเล, ราไวย์)</p>
+                  <p className="text-sm font-bold text-stone-800">สมุทรปราการ</p>
                 </div>
               </div>
             </div>
